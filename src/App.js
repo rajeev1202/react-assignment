@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import BoxComponent from './boxComponent';
 
-function App() {
+class  App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      bgColor: "red",
+      onClickMsg:""
+    }
+  }
+
+  handleClick = (e) => {
+    this.setState({bgColor:'green', onClickMsg:"Button Clicked !"})
+  }
+handleResetClick =(e) => {
+  this.setState({bgColor:'red' ,onClickMsg: ""})
+}
+
+render(){
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+   
+    <div className="app">
+      <BoxComponent bgColor={this.state.bgColor}/>
+      <div className="button-container">
+<button className="click-button" onClick={this.handleClick}> 
+PRESS
+</button>
+<button className="click-button" onClick={this.handleResetClick}> 
+RESET
+</button>
+</div>
+  <h5>{this.state.onClickMsg}</h5>
+      
     </div>
+  
   );
+}
 }
 
 export default App;
